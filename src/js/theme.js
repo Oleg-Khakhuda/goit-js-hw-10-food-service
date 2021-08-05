@@ -10,15 +10,16 @@ const savedTheme = localStorage.getItem('theme');
 bodyEl.classList.add(Theme.LIGHT);
 toggleEl.addEventListener('change', checkBoxChange);
 
-if (savedTheme === '') {
-  bodyEl.classList.add(Theme.LIGHT);
+function provTheme() {
+  if (savedTheme === 'null') {
+    bodyEl.classList.add(Theme.LIGHT);
+  } else if (savedTheme === 'false') {
+    bodyEl.classList.remove(Theme.LIGHT);
+    bodyEl.classList.add(Theme.DARK);
+    toggleEl.checked = true;
+  }
 }
-
-if (savedTheme === 'false') {
-  bodyEl.classList.remove(Theme.LIGHT);
-  bodyEl.classList.add(Theme.DARK);
-  toggleEl.checked = true;
-}
+provTheme()
 
 function checkBoxChange(evt) {
   bodyEl.classList.toggle(Theme.LIGHT);
